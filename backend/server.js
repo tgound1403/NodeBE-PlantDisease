@@ -29,10 +29,10 @@ const path = require('path');
 // app.set('view engine', 'jsx')
 // app.engine('jsx', render(options))
 
-const createEngine = require('express-react-views');
+// const createEngine = require('express-react-views');
 app.set('views', './views');
 app.set('view engine', 'jsx');
-app.engine('jsx', createEngine.createEngine());
+// app.engine('jsx', createEngine.createEngine());
 // app.set('view engine', 'ejs')
 
 // console.log(process.env.AUTH_PASS)
