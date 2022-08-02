@@ -15,6 +15,8 @@ const cors = require("cors");
 const flash = require('express-flash');
 const session = require('cookie-session');
 const app = express();
+app.use(cors());
+
 const bodyParser = require('body-parser');
 // const render = require('express-react-view')
 const path = require('path');
@@ -53,20 +55,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/api', routes);
 
-const corsOptions = {
-    origin: ["http://localhost:3000/", "https://whale-app-39ifh.ondigitalocean.app/"],
-    preflightContinue: false,
-    credentials: true
-}
-
 app.all('*', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     //...
 });
-
-app.use(cors(corsOptions));
 
 // app.use(cors({ origin: "http://localhost:3000", credentials: true }))
 app.use(flash())
