@@ -52,8 +52,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/api', routes);
-// app.use(cors());
-app.use(cors({ origin: "http://localhost:3000", credentials: true }))
+
+const corsOptions = {
+    origin: ["http://localhost:3000/", "https://whale-app-39ifh.ondigitalocean.app/"],
+    preflightContinue: false,
+    credentials: true
+}
+
+app.use(cors(corsOptions));
+
+// app.use(cors({ origin: "http://localhost:3000", credentials: true }))
 app.use(flash())
 // app.set('view engine', 'jsx');
 // app.set('view engine', 'js');
