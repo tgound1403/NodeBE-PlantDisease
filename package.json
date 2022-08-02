@@ -36,6 +36,7 @@
     "camelcase": "^6.3.0",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.0.0",
     "core-js": "^3.22.8",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
