@@ -15,7 +15,7 @@ var session = require("express-session");
 var bcrypt = require("bcryptjs");
 var express = require("express");
 var path = require("path");
-var session = require("express-session");
+var session = require("cookie-session");
 var passport = require("passport");
 var flash = require("express-flash");
 // var logger = require('logger')
@@ -384,7 +384,7 @@ const editUserInfo = (req, res) => {
           console.log(err);
         } else {
           console.log("User info updated");
-          // res.redirect("http://localhost:8080/profile");
+          res.redirect(req.headers.host + "/profile");
         }
       });
     }

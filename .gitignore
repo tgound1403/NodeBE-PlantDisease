@@ -4,7 +4,7 @@
 /Flask
 /backend/images
 /public
-
+/frontend
 
 # production
 /build
