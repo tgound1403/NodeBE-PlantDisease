@@ -4,22 +4,22 @@ const morgan = require("morgan");
 const connectDB = require("./config/db");
 const routes = require("./routes/api");
 var passport = require("passport");
-const dotenv = require('dotenv');
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const userRoutes = require('./routes/userRoutes');
+const dotenv = require("dotenv");
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const userRoutes = require("./routes/userRoutes");
 const { notFound } = require("./middlewares/errorMiddleware");
-const { errorHandler } = require("./middlewares/errorMiddleware");
+// const { errorHandler } = require("./middlewares/errorMiddleware");
 const cors = require("cors");
 // const initRoutes = require('./routes/web');
-const flash = require('express-flash');
-const session = require('cookie-session');
+const flash = require("express-flash");
+const session = require("cookie-session");
 const app = express();
 app.use(cors());
 
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 // const render = require('express-react-view')
-const path = require('path');
+const path = require("path");
 
 // const options = {
 //     root: path.join('./', 'views'),
@@ -32,54 +32,44 @@ const path = require('path');
 // app.engine('jsx', render(options))
 
 // const createEngine = require('express-react-views');
-app.set('views', './views');
-app.set('view engine', 'jsx');
+app.set("views", "./views");
+app.set("view engine", "jsx");
 // app.engine('jsx', createEngine.createEngine());
 // app.set('view engine', 'ejs')
 
-// console.log(process.env.AUTH_PASS)
 dotenv.config();
 connectDB();
 
-app.use(session({
-    secret: 'secret option',
+app.use(
+  session({
+    secret: "secret option",
     resave: true,
-    saveUninitialized: true
-}));
+    saveUninitialized: true,
+  })
+);
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/api', routes);
+app.use("/api", routes);
 
-// app.all('*', function (req, res) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-//     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-//     //...
-// });
-
-// app.use(cors({ origin: "http://localhost:3000", credentials: true }))
-app.use(flash())
+app.use(flash());
 // app.set('view engine', 'jsx');
 // app.set('view engine', 'js');
 
 // Data parsing
 app.use(express.json());
 
-app.use('/api/users', userRoutes);
+app.use("/api/users", userRoutes);
 // Error Handling middlewares
-// app.use(notFound);
+app.use(notFound);
 // app.use(errorHandler);
-app.use(express.urlencoded({ extended: true }))
-// initRoutes(app)
+app.use(express.urlencoded({ extended: true }));
 
-// const PORT = process.env.PORT || 4000;
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-    console.log(`Server started on PORT ${PORT}`.yellow)
+  console.log(`Server started on PORT ${PORT}`.yellow);
 });
-

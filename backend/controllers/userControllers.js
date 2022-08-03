@@ -160,7 +160,7 @@ const verifyEmail = (req, res) => {
         });
         var mailOptions = {
           to: req.body.email,
-          from: 'PLANT DISEASE TEAM',
+          from: "PLANT DISEASE TEAM",
           subject: "Verify Email",
           text:
             "Bạn nhận được mail này vì bạn cần xác minh tài khoản để sử dụng ứng dụng Plant Disease của chúng tôi.\n\n" +
@@ -168,7 +168,7 @@ const verifyEmail = (req, res) => {
             "http://" +
             req.headers.host +
             "/api/users/verify/" +
-            token
+            token,
         };
         smtpTransport.sendMail(mailOptions, function (err) {
           // req.flash('info', 'An email has been send to ' + user.email + ' with further instructions.');
@@ -228,7 +228,9 @@ const forgotPassword = (req, res) => {
         User.findOne({ email: req.body.email }, function (err, user) {
           if (!user) {
             console.log("no account with that email");
-            return res.redirect(req.headers.host + "/api/users/forgot-password");
+            return res.redirect(
+              req.headers.host + "/api/users/forgot-password"
+            );
             // throw new Error("user already existed");
           }
 
@@ -297,7 +299,9 @@ const postResetRequest = (req, res) => {
                 "Password reset token is invalid or has expired."
               );
               console.log("Stop here");
-              return res.redirect(req.headers.host + "/api/users/forgot-password");
+              return res.redirect(
+                req.headers.host + "/api/users/forgot-password"
+              );
             }
 
             user.password = req.body.password;
@@ -389,20 +393,20 @@ const editUserInfo = (req, res) => {
       });
     }
   });
-}
+};
 
 const getUserInfo = (req, res) => {
   console.log("get user info is running");
   console.log(req.params.id);
-  User.findOne({ _id: req.params.id }).then((data) => {
-    console.log('Users: ', data);
-    res.json(data);
-  })
+  User.findOne({ _id: req.params.id })
+    .then((data) => {
+      console.log("Users: ", data);
+      res.json(data);
+    })
     .catch((error) => {
       console.log("Error: ", error);
-    })
+    });
 };
-
 
 module.exports = {
   registerUser,

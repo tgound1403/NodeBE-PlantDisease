@@ -30,7 +30,7 @@ const userSchema = new Schema(
     },
     followers: {
       type: [String],
-      default: []
+      default: [],
     },
     following: { type: [String], default: [] },
     // Reset password attr
@@ -43,27 +43,27 @@ const userSchema = new Schema(
     firstName: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     lastName: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     birthday: {
       type: Date,
       required: false,
-      default: ""
+      default: "",
     },
     phoneNumber: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     gender: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
   },
   {
