@@ -90,7 +90,7 @@ const registerUser = asyncHandler(async (req, res) => {
         },
         config
       );
-      // console.log(data);
+      console.log(data);
       console.log("Calling send verify");
     } catch (error) {
       console.log(error.message);
@@ -98,7 +98,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
   } else {
     res.status(400);
-    console.log("Error occured! ");
+    console.log("Error occurred! ");
   }
 });
 
@@ -133,6 +133,7 @@ const verifyEmail = (req, res) => {
         crypto.randomBytes(20, function (err, buf) {
           var token = buf.toString("hex");
           done(err, token);
+          console.log("create token: " + token);
         });
       },
       function (token, done) {
@@ -143,9 +144,11 @@ const verifyEmail = (req, res) => {
           user.save(function (err) {
             done(err, token, user);
           });
+          console.log("user updated: ");
         });
       },
       function (token, user, done) {
+        console.log(user);
         verifyEmailToken = token;
         linkExpires = Date.now() + 3600000;
         var smtpTransport = nodemailer.createTransport({
