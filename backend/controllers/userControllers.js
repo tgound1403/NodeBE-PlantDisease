@@ -159,8 +159,8 @@ const verifyEmail = (req, res) => {
           secure: false,
           auth: {
             type: "login",
-            user: process.env.AUTH_MAIL,
-            pass: process.env.MY_AUTH_PASS,
+            user: process.env.AUTH_MAIL || "trieuduong140302@gmail.com",
+            pass: process.env.MY_AUTH_PASS || "axlnblgimeewlzjl",
           },
         });
         var mailOptions = {
