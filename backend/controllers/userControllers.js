@@ -208,7 +208,7 @@ const getVerifyRequest = (req, res) => {
           // done(err, user);
         });
       });
-      res.redirect(req.headers.host + "/verify");
+      res.redirect("https://whale-app-39ifh.ondigitalocean.app/verify");
     }
   );
 };
