@@ -84,7 +84,7 @@ const registerUser = asyncHandler(async (req, res) => {
         },
       };
       const { data } = await axios.post(
-        "http://localhost:4000/api/users/verify",
+        `${"https://desolate-everglades-44147.herokuapp.com"}/api/users/verify`,
         {
           email: user.email,
         },
@@ -203,7 +203,7 @@ const getVerifyRequest = (req, res) => {
           // done(err, user);
         });
       });
-      res.redirect("http://localhost:8080/verify");
+      res.redirect(req.headers.host + "/verify");
     }
   );
 };
@@ -228,7 +228,7 @@ const forgotPassword = (req, res) => {
         User.findOne({ email: req.body.email }, function (err, user) {
           if (!user) {
             console.log("no account with that email");
-            return res.redirect("/api/users/forgot-password");
+            return res.redirect(req.headers.host + "/api/users/forgot-password");
             // throw new Error("user already existed");
           }
 
@@ -297,7 +297,7 @@ const postResetRequest = (req, res) => {
                 "Password reset token is invalid or has expired."
               );
               console.log("Stop here");
-              return res.redirect("/api/users/forgot-password");
+              return res.redirect(req.headers.host + "/api/users/forgot-password");
             }
 
             user.password = req.body.password;
@@ -356,7 +356,7 @@ const getResetRequest = (req, res) => {
         console.log(req.params.token);
         // req.flash('error', 'Password reset token is invalid or has expired.');
         console.log("Password reset token is invalid or has expired.");
-        return res.redirect("/api/users/forgot-password");
+        return res.redirect(req.headers.host + "/api/users/forgot-password");
       }
       console.log(req.params.token, user);
       // res.redirect('http://localhost:8080/reset/' + req.params.token);
