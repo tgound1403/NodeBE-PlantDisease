@@ -42,27 +42,27 @@ const userSchema = new Schema(
     // Edit profile attr
     firstName: {
       type: String,
-      required: true,
+      required: false,
       default: ""
     },
     lastName: {
       type: String,
-      required: true,
+      required: false,
       default: ""
     },
     birthday: {
       type: Date,
-      required: true,
+      required: false,
       default: ""
     },
     phoneNumber: {
       type: String,
-      required: true,
+      required: false,
       default: ""
     },
     gender: {
       type: String,
-      required: true,
+      required: false,
       default: ""
     },
   },
