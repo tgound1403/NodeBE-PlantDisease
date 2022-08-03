@@ -64,8 +64,8 @@ app.use(flash());
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
-// Error Handling middlewares
-app.use(notFound);
+// Error Handling middleware
+// app.use(notFound);
 // app.use(errorHandler);
 app.use(express.urlencoded({ extended: true }));
 
