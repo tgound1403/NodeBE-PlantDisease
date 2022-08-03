@@ -149,6 +149,7 @@ const verifyEmail = (req, res) => {
       },
       function (token, user, done) {
         console.log(user);
+        console.log(process.env.AUTH_MAIL);
         verifyEmailToken = token;
         linkExpires = Date.now() + 3600000;
         var smtpTransport = nodemailer.createTransport({
@@ -157,8 +158,9 @@ const verifyEmail = (req, res) => {
           port: 587,
           secure: false,
           auth: {
+            type: "login",
             user: process.env.AUTH_MAIL,
-            pass: process.env.AUTH_PASS,
+            pass: process.env.MY_AUTH_PASS,
           },
         });
         var mailOptions = {
