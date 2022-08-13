@@ -5,7 +5,7 @@ const PostSchema = new Schema(
   {
     userId: {
       type: String,
-      required: true,
+      required: false,
       default: "",
     },
     creatorAvatar: String,
